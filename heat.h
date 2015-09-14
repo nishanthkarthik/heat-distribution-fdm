@@ -1,6 +1,8 @@
 #ifndef HEAT_DEF
 #define HEAT_DEF
 #include <iostream>
+#include <fstream>
+#include <iomanip>
 using namespace std;
 
 class heat
@@ -32,9 +34,9 @@ public:
 
     void update()
     {
-        for (size_t i = 1; i < dim-1; i++)
+        for (int i = 1; i < dim-1; i++)
         {
-            for (size_t j = 1; j < dim-1; j++)
+            for (int j = 1; j < dim-1; j++)
             {
                 a[i][j] = (a[i-1][j] + a[i+1][j] + a[i][j-1] + a[i][j+1]) / 4;
             }
@@ -71,12 +73,25 @@ public:
 
     void printValues()
     {
+        cout<<std::fixed;
         for (int i = 0; i < dim; i++)
         {
             for (int j = 0; j < dim; j++)
-            printf("%*f ",0,a[i][j] );;
+            cout<<std::setprecision(6)<<a[i][j]<<" ";
             cout<<endl;
         }
+    }
+
+    void exportCsv(const char* fileName)
+    {
+        ofstream out(fileName,ios::out);
+        out<<std::fixed;
+        for (int i = 0; i < dim; i++)
+        {
+            for (int j = 0; j < dim; j++)
+                out<<i<<','<<j<<','<<std::setprecision(6)<<a[i][j]<<endl;
+        }
+        out.close();
     }
 };
 #endif

@@ -3,10 +3,11 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <string>
 #include "heat.h"
 using namespace std;
 
-#define NGRID 8
+#define NGRID 50
 
 int main()
 {
@@ -18,12 +19,23 @@ int main()
         t[i] = 400;
     }
     ht.readValues(t,b,l,r);
-    ht.printValues();
-    cout<<endl;
-    ht.update();
-    ht.printValues();
-    cout<<endl;
-    ht.updateLoop(50);
-    ht.printValues();
+    //ht.printValues();
+    //cout<<endl;
+    //ht.update();
+    //ht.printValues();
+    //ht.exportCsv("init.csv");
+    //cout<<endl;
+
+    for(int i = 0; i < 100; i++)
+    {
+        string fileName = std::to_string(i) + ".csv";
+        ht.exportCsv(fileName.c_str());
+        ht.updateLoop(50);
+    }
+
+    //ht.exportCsv("result.csv");
+    //ht.printValues();
+    cout<<"Export Done"<<endl;
+
     return 0;
 }
