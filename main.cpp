@@ -6,7 +6,7 @@
 #include "heat.h"
 using namespace std;
 
-#define NGRID 4
+#define NGRID 8
 
 int main()
 {
@@ -18,6 +18,12 @@ int main()
         t[i] = 400;
     }
     ht.readValues(t,b,l,r);
+    ht.printValues();
+    cout<<endl;
+    ht.update();
+    ht.printValues();
+    cout<<endl;
+    ht.updateLoop(50);
     ht.printValues();
     return 0;
 }
