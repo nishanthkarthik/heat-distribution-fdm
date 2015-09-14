@@ -5,20 +5,16 @@ import plotly.plotly as py
 import numpy as np
 
 def create_data_lists():
-    n = 50
-    for x in range(0,1):
+    for x in range(0,100):
         with open(str(x)+'.csv', 'r') as f:
             print str(x)+' csv open'
             rowdata = []
             csvreader = csv.reader(f)
-            #csvreader.next()
             for row in csvreader:
-                itemlist = []
-                for item in row:
-                    itemlist.append(float(item))
-                rowdata.append(itemlist)
+                rowdata.append(row)
             #pprint.pprint(rowdata)
             #print rowdata.__class__
+
             print str(x) + " data collected"
             data = Data([Heatmap(z = rowdata)])
             print str(x) + " image starting"

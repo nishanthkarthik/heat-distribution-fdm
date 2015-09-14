@@ -89,7 +89,8 @@ public:
         for (int i = 0; i < dim; i++)
         {
             for (int j = 0; j < dim; j++)
-                out<<i<<','<<j<<','<<std::setprecision(6)<<a[i][j]<<endl;
+                out<<std::setprecision(6)<<a[i][j]<<',';
+            out<<endl;
         }
         out.close();
     }
